@@ -32,10 +32,15 @@ jobs:
       - name: Run Tests
         run: |
           pytest --junitxml=pytest-results.xml
+      # Step to run pytest and generate a JUnit XML report
+      - name: Run Tests
+        run: |
+          pytest --junitxml=pytest-results.xml
 
-      
-      - name: Upload pytest results
-        uses: actions/upload-artifact@v2
+      # Step to publish test results to GitHub UI
+      - name: Report Test Results
+        uses: dorny/test-reporter@v1
         with:
-          name: pytest-results
+          name: Pytest Results
           path: pytest-results.xml
+          reporter: java-junit
