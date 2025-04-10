@@ -3,7 +3,10 @@ name: ci_demo
 on:
   push:
     branches:
-      - github_actions  # This specific branch
+      - main  # Trigger on push to 'main' branch
+  pull_request:
+    branches:
+      - main  # Trigger on new or updated pull requests targeting 'main' branch
 
 jobs:
   build:
@@ -18,7 +21,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8'  # You can specify a different version if needed
+          python-version: '3.8'
 
       # Step to install dependencies
       - name: Install dependencies
